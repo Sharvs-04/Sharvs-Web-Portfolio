@@ -44,7 +44,7 @@ const ContactForm = () => {
             className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:mr-auto lg:pl-10 lg:order-1 lg:text-left text-center xl:mr-28">
                 <div className="flex flex-col items-start pb-16">
                     <h2 className="my-10 lg:my-16 text-4xl lg:text-5xl font-bold tracking-wide text-white">
-                        LOVE TO HEAR FROM YOU,<span className="text-blue-500"> GET IN TOUCH!</span>
+                        WE'D LOVE TO CONNECT WITH YOU,<span className="text-blue-500"> REACH OUT TODAY!</span>
                     </h2>
                     <p className="text-lg text-neutral-500 mb-4 lg:mb-6">
                         <a href="https://www.linkedin.com/in/sharvien-paul-claro/" className="flex items-center text-white">
