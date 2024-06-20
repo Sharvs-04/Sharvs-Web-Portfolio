@@ -1,5 +1,5 @@
 import { HERO_CONTENT } from "../constants";
-import profilepic from "../assets/sharvs-dp.png";
+import profilepic from "../assets/sharvs-dp.jpg";
 import { motion } from "framer-motion";
 
 const container = (delay) => ({
@@ -64,7 +64,7 @@ const Hero = () => {
                 initial={{ x: 100, opacity: 0 }} 
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="w-60 lg:w-3/4 rounded-lg shadow-lg"
+                className="w-60 lg:w-3/4 rounded-full shadow-xl"
                 src={profilepic} 
                 alt="Sharvien-dp" 
             />
