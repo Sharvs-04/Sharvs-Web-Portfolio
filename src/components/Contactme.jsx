@@ -69,7 +69,7 @@ const ContactForm = () => {
             whileInView={{opacity: 1 , x:0}}
             initial={{opacity: 0 , x: 100}}
             transition={{duration: 1}} 
-            className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:order-2 lg:pt-10 lg:pr-10 xl:mr-80">
+            className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:order-2 lg:pt-10 lg:pr-10 xl:mr-72">
                 <form ref={form} onSubmit={sendEmail} className="space-y-4">
                     <div className="flex flex-col sm:flex-row sm:space-x-4">
                         <div className="w-full sm:w-1/2">
