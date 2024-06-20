@@ -10,7 +10,7 @@ export const EXPERIENCES = [
     role: "SEO Specialist",
     company: "Vavasoftware Corporation",
     description: `The SEO specialist executes end-to-end strategies that encompass technical optimization, content enhancement, link management, and the effective utilization of SEO tools. Continuous keyword research ensures opportunities are identified and capitalized upon, enhancing search engine rankings. Utilizing tools such as Google Analytics, Google Search Console, and Ahrefs, they derive actionable insights for ongoing improvement. Close collaboration with development teams ensures seamless integration of SEO best practices into newly developed code. By optimizing content and landing pages, they enhance relevance for search engine optimization. Remaining abreast of SEO trends and industry developments, including social media and internet marketing, informs their strategic approach.`,
-    technologies: ["Html", "Css", "Javascript", "Php", "Wordpress","Wix","Google Analytics","Google Search Console","Screaming Frog"],
+    technologies: ["Html", "Css", "Javascript", "Php", "Wordpress","Wix","Google Analytics","Google Search Console","Screaming Frog","Ahrefs","SEMrush"],
   },
   {
     year: "August 2023- December 2023",
