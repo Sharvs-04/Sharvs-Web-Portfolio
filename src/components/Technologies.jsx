@@ -14,6 +14,7 @@ import { SiJavascript } from "react-icons/si";
 import { FaAngular } from "react-icons/fa";
 import {animate, motion} from "framer-motion";
 import { FaGithub } from 'react-icons/fa';
+import ahrefs from "../assets/ahrefs.png"
 
 const iconVariants = (duration) => ({
     initial: {y:-10},
@@ -107,6 +108,8 @@ const Technologies = () => {
             <SiGoogleanalytics className="text-7xl text-yellow-400" alt="analytics"/>
             </motion.div>
 
+            <div className="flex flex-wrap items-center justify-center gap-4"> 
+
             <motion.div 
             variants={iconVariants(1.5)}
             initial="initial"
@@ -122,7 +125,7 @@ const Technologies = () => {
             className="rounded-2xl border-4 border-neutral-800 p-4">
             <SiSemrush className="text-7xl text-orange-600" alt="semrush"/>
             </motion.div>
-
+              
             <motion.div 
             variants={iconVariants(1.5)}
             initial="initial"
@@ -130,6 +133,16 @@ const Technologies = () => {
             className="rounded-2xl border-4 border-neutral-800 p-4">
             <FaFrog className="text-7xl text-green-700" alt="screamingfrog"/>
             </motion.div>
+
+            <motion.div
+            variants={iconVariants(1.5)}
+            initial="initial"
+            animate="animate"
+            className="rounded-2xl border-4 border-neutral-800 p-6"
+            >
+            <img className="h-14 w-12" src={ahrefs} alt="Ahrefs"  />
+            </motion.div>
+
 
             <motion.div 
             variants={iconVariants(3)}
@@ -154,12 +167,13 @@ const Technologies = () => {
             </motion.div>
 
             <motion.div 
-            variants={iconVariants(3)}
+            variants={iconVariants(1.5)}
             initial="initial"
             animate="animate"
             className="rounded-2xl border-4 border-neutral-800 p-4">
             <FaGithub className="text-7xl text-white" alt="css"/>
             </motion.div>
+            </div> 
 
         </motion.div >
      </div>
