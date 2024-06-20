@@ -17,7 +17,12 @@ const Hero = () => {
     <div className="flex flex-col md:flex-row lg:flex-row lg:flex-wrap md:ml-12">
         <div className="w-full lg:w-1/2 flex items-center mb-8 lg:mb-0">
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                <span className="text-lg lg:text-xl text-gray-600 pl-2">Hello, I'm</span>
+                <motion.span 
+                variants={container(0)}
+                initial="hidden"
+                animate="visible"
+                className="text-lg lg:text-xl text-gray-600 pl-2">Hello, I'm</motion.span >
+
                 <motion.h1 
                     variants={container(0)}
                     initial="hidden"
@@ -43,12 +48,15 @@ const Hero = () => {
                 >
                     {HERO_CONTENT}
                 </motion.p>
-                <a 
+                <motion.a 
                     href="https://drive.google.com/uc?export=download&id=1fveLeWfuYlXJkDMC2IvOpWHnn_Pf1VMv" 
+                    variants={container(0)}
+                    initial="hidden"
+                    animate="visible"
                     className="mt-4 px-10 py-2 bg-slate-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors block w-full lg:w-auto text-center lg:text-left"
                 >
                     Download Resume
-                </a>
+                </motion.a >
             </div>
         </div>
         <div className="w-full lg:w-1/2 lg:p-8 flex items-center justify-center">

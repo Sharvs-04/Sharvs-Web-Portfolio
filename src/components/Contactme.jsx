@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaLinkedin, FaPhone } from 'react-icons/fa';
 import { BiLogoGmail } from 'react-icons/bi';
+import { motion } from "framer-motion";
 
 const ContactForm = () => {
     const form = useRef();
@@ -36,7 +37,11 @@ const ContactForm = () => {
     return (
         <div className="border-b border-neutral-900 pb-6 lg:pb-10 px-4 flex flex-col lg:flex-row items-center justify-between pt-14 xl:ml-32">
             {/* Contact Information Section */}
-            <div className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:mr-auto lg:pl-10 lg:order-1 lg:text-left text-center xl:mr-28">
+            <motion.div 
+            whileInView={{opacity: 1 , x: 0 }}
+            initial={{opacity: 0 , x: -100}}
+            transition={{duration:1}}
+            className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:mr-auto lg:pl-10 lg:order-1 lg:text-left text-center xl:mr-28">
                 <div className="flex flex-col items-start pb-16">
                     <h2 className="my-10 lg:my-16 text-4xl lg:text-5xl font-bold tracking-wide text-white">
                         LOVE TO HEAR FROM YOU,<span className="text-blue-500"> GET IN TOUCH!</span>
@@ -57,10 +62,14 @@ const ContactForm = () => {
                         </a>
                     </p>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Contact Form Section */}
-            <div className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:order-2 lg:pt-10 lg:pr-10 xl:mr-80">
+            <motion.div
+            whileInView={{opacity: 1 , x:0}}
+            initial={{opacity: 0 , x: 100}}
+            transition={{duration: 1}} 
+            className="max-w-xl w-full lg:w-1/2 mx-auto lg:mx-0 lg:order-2 lg:pt-10 lg:pr-10 xl:mr-80">
                 <form ref={form} onSubmit={sendEmail} className="space-y-4">
                     <div className="flex flex-col sm:flex-row sm:space-x-4">
                         <div className="w-full sm:w-1/2">
@@ -109,7 +118,7 @@ const ContactForm = () => {
                         {statusMessage}
                     </div>
                 )}
-            </div>
+            </motion.div>
             
             {/* Toast Container */}
             <ToastContainer
