@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://sharvs-web-portfolio.vercel.app/sitemap.xml
