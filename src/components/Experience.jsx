@@ -2,10 +2,17 @@ import { EXPERIENCES } from "../constants";
 import { motion } from "framer-motion";
 
 const Experience = () => {
-  // Sort most recent first (assumes year like "2024" or "2023 - 2024")
-  const sortedExperiences = [...EXPERIENCES].sort((a, b) =>
-    b.year.localeCompare(a.year)
-  );
+  // Sort experiences by actual start date (most recent first)
+  const sortedExperiences = [...EXPERIENCES].sort((a, b) => {
+    const parseDate = (str) => {
+      // Split "Month YYYY - ..." and convert to Date
+      const [start] = str.split(" - ");
+      const [month, year] = start.trim().split(" ");
+      return new Date(`${month} 1, ${year}`);
+    };
+
+    return parseDate(b.year) - parseDate(a.year);
+  });
 
   return (
     <section className="border-b border-neutral-800 px-6 py-16">
@@ -30,21 +37,13 @@ const Experience = () => {
             className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-5 transition hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/10"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold">
-                {exp.role}
-              </h3>
-              <span className="text-xs text-neutral-400">
-                {exp.year}
-              </span>
+              <h3 className="text-base font-semibold">{exp.role}</h3>
+              <span className="text-xs text-neutral-400">{exp.year}</span>
             </div>
 
-            <p className="mt-1 text-sm text-blue-500">
-              {exp.company}
-            </p>
+            <p className="mt-1 text-sm text-blue-500">{exp.company}</p>
 
-            <p className="mt-3 text-sm text-neutral-400">
-              {exp.description}
-            </p>
+            <p className="mt-3 text-sm text-neutral-400">{exp.description}</p>
 
             <div className="mt-4 flex flex-wrap gap-2">
               {exp.technologies.map((tech, i) => (

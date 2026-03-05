@@ -13,7 +13,7 @@ export const EXPERIENCES = [
     role: "SEO Specialist",
     company: "Skytech Solution Inc",
     description: `As an SEO Specialist, I design and develop high-converting single-product web pages using HTML, CSS, and JavaScript, ensuring optimal speed, user experience, and performance. I conduct comprehensive SEO audits utilizing tools such as Ahrefs and Screaming Frog to uncover technical and on-page optimization opportunities. My expertise includes implementing white-hat SEO strategies covering technical SEO, content enhancement, internal linking, and authority building. I also perform competitive analysis leveraging advanced SEO techniques to inform strategic decisions. I execute content strategies, including AMP page development for improved mobile performance, and manage backlink campaigns by evaluating domain quality and link authority. Additionally, I optimize websites using Google Lighthouse metrics and configure Google Search Console and Google Analytics to enable accurate tracking, reporting, and data-driven growth strategies.`,
-    technologies: ["HTML", "CSS", "JavaScript", "Google Analytics", "Google Search Console", "Screaming Frog", "Ahrefs", "Google Lighthouse", "Gtmetrix"],
+    technologies: ["HTML", "CSS", "JavaScript", "Google Analytics", "Google Search Console", "Screaming Frog", "Ahrefs", "Google Lighthouse", "Gtmetrix" , "Wordpress"],
   },
   {
     year: "January 2024 - June 2024",
