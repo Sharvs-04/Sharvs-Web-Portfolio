@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 // export const HERO_CONTENT = `I have basic to advance knowledge in web development, including HTML, CSS, JavaScript, React, PHP, and MySQL. In addition, I have basic UI/UX design skills and experience with hardware/software issues, web hosting,and SEO tools.`;
 
 export const ABOUT_TEXT = `I am a cum laude graduate of Bulacan State University with a foundation in web development and search engine optimization. My career began in front-end development, where I gained hands-on experience working with Angular and collaborating with cross-functional teams to build functional, user-focused web applications.
@@ -16,7 +17,14 @@ export const EXPERIENCES = [
   description: `As an SEO Specialist, I design and develop high-converting single-product web pages using HTML, CSS, and JavaScript, ensuring optimal speed, user experience, and performance. I conduct comprehensive SEO audits utilizing tools such as Ahrefs and Screaming Frog to uncover technical and on-page optimization opportunities. My expertise includes implementing white-hat SEO strategies covering technical SEO, content enhancement, internal linking, and authority building. I also perform competitive analysis leveraging advanced SEO techniques to inform strategic decisions. I execute content strategies, including AMP page development for improved mobile performance, and manage backlink campaigns by evaluating domain quality and link authority. Additionally, I optimize websites using Google Lighthouse metrics and configure Google Search Console and Google Analytics to enable accurate tracking, reporting, and data-driven growth strategies.`,
   technologies: ["HTML", "CSS", "JavaScript", "Google Analytics", "Google Search Console", "Screaming Frog", "Ahrefs", "Google Lighthouse", "Gtmetrix"],
   },
+  
+export const HERO_CONTENT = `I have basic to advance knowledge in web development, including HTML, CSS, JavaScript, React, PHP, and MySQL. In addition, I have basic UI/UX design skills and experience with hardware/software issues, web hosting,and SEO tools.`;
+
+export const ABOUT_TEXT = `I graduated cum laude from Bulacan State University and was recognized as a candidate for the best capstone title of Virtual Casa Real Shrine. As a Front-end Web Developer intern, I worked at Accenture Philippines, where I learned practical skills in Angular and interacted with team members to integrate front-end and back-end technologies. At Inflight Menu Travel Corporation, I created company websites, enhanced social media, and secured data privacy and network security. As an SEO Specialist at VAVA Software Corporation, I implemented comprehensive SEO tactics, using tools such as Google Analytics and Ahrefs to improve search engine performance ,content and worked with CMS tools. I contribute a diverse set of skills, including front-end programming, digital technology management, and SEO, making me a flexible team member.`;
+
+export const EXPERIENCES = [
   {
+>>>>>>> 70aeadae3b08672102f6a54baf9e3cf612eba7c4
     year: "January 2024 - June 2024",
     role: "SEO Specialist",
     company: "Vavasoftware Corporation",
@@ -74,4 +82,8 @@ export const EXPERIENCES = [
 //   address: "767 Fifth Avenue, New York, NY 10153 ",
 //   phoneNo: "+12 4555 666 00 ",
 //   email: "me@example.com",
+<<<<<<< HEAD
 // };
+=======
+// };
+>>>>>>> 70aeadae3b08672102f6a54baf9e3cf612eba7c4

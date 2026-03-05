@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@emailjs/browser": "^4.4.1",
     "framer-motion": "^11.18.2",
     "react": "^18.2.0",
@@ -19,6 +20,15 @@
     "react-toastify": "^10.0.5",
     "sileo": "^0.1.5",
     "sonner": "^2.0.7"
+=======
+    "@emailjs/browser": "^4.3.3",
+    "framer-motion": "^11.2.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.23.1",
+    "react-toastify": "^10.0.5"
+>>>>>>> 70aeadae3b08672102f6a54baf9e3cf612eba7c4
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
