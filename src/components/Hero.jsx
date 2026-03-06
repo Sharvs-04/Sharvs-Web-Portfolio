@@ -65,7 +65,7 @@ const Hero = () => {
             </motion.p>
 
             <motion.a
-              href="https://drive.google.com/file/d/1Im52jhhrcI67Rttc000FUgqQdyZDcY7W/view?usp=sharing"
+              href="https://drive.google.com/file/d/1LJ3rxismOSaX6WRpc64m7ImCnUbYMCoR/view?usp=sharing"
               variants={container(0)}
               initial="hidden"
               animate="visible"
