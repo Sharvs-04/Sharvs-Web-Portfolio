@@ -1,7 +1,50 @@
+import React, { useRef, useState, useLayoutEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import { useRef, useState, useLayoutEffect } from "react";
 
-const Category = ({ category }) => {
+// Categories / projects data
+const categories = [
+  {
+    title: "IGAMING SINGLE PRODUCT WEBPAGE",
+    projects: [
+      { title: "Casino Landing Page", image: "/images/product-website.png" },
+      { title: "Sports Betting Page", image: "/images/product-website.png" },
+      { title: "Gaming Promo Page", image: "/images/product-website.png" },
+    ],
+  },
+  {
+    title: "GRAPHIC DESIGN",
+    projects: [
+      { title: "Menu Design", image: "/images/graphic-design.png" },
+      { title: "Promo Banner", image: "/images/graphic-design.png" },
+      { title: "Social Media Creative", image: "/images/graphic-design.png" },
+    ],
+  },
+  {
+    title: "WEB DESIGN",
+    projects: [
+      { title: "Corporate Website", image: "/images/website-design.png" },
+      { title: "Landing Page", image: "/images/landing-pages.png" },
+      { title: "Startup Website", image: "/images/website-design.png" },
+    ],
+  },
+];
+
+const Projects = () => {
+  return (
+    <div className="border-b border-neutral-800 pb-28 px-6 text-white max-w-7xl mx-auto">
+      <h2 className="text-5xl font-bold text-center my-20 tracking-tight">
+        Projects
+      </h2>
+
+      {/* Map over all categories */}
+      {categories.map((category, i) => (
+        <Category key={i} projectsData={category} />
+      ))}
+    </div>
+  );
+};
+
+const Category = ({ projectsData }) => {
   const sliderRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -10,37 +53,54 @@ const Category = ({ category }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
 
-  // calculate max drag width
+  // Safely default projects
+  const projects = Array.isArray(projectsData?.projects)
+    ? projectsData.projects
+    : [];
+
+  const title = projectsData?.title || "Projects";
+
+  // Calculate max drag width
   useLayoutEffect(() => {
-    if (sliderRef.current && containerRef.current) {
+    if (sliderRef.current && containerRef.current && projects.length > 0) {
       const sliderWidth = sliderRef.current.scrollWidth;
       const containerWidth = containerRef.current.offsetWidth;
-      setDragWidth(sliderWidth - containerWidth);
+      const width = sliderWidth - containerWidth;
+      setDragWidth(width > 0 ? width : 0);
     }
-  }, [category.projects]);
+  }, [projects]);
 
-  // sync active dot with slider position
+  // Sync active dot with slider position
   useLayoutEffect(() => {
     const unsubscribe = x.onChange((latestX) => {
-      const cardWidth = sliderRef.current.children[0].offsetWidth + 24; // card + gap
-      const index = Math.round(Math.abs(latestX) / cardWidth);
-      setActiveIndex(index);
+      if (sliderRef.current && sliderRef.current.children.length > 0) {
+        const cardWidth = sliderRef.current.children[0].offsetWidth + 24; // gap
+        const index = Math.round(Math.abs(latestX) / cardWidth);
+        setActiveIndex(index);
+      }
     });
     return () => unsubscribe();
   }, [x]);
 
-  // click dot → move slider
+  // Click dot → scroll slider
   const scrollToCard = (index) => {
-    const cardWidth = sliderRef.current.children[0].offsetWidth + 24;
-    x.set(-index * cardWidth);
+    if (sliderRef.current && sliderRef.current.children.length > 0) {
+      const cardWidth = sliderRef.current.children[0].offsetWidth + 24;
+      x.set(-index * cardWidth);
+    }
   };
 
-  const handleMouseMove = (e) => setCursor({ x: e.clientX, y: e.clientY, visible: true });
-  const handleLeave = () => setCursor(prev => ({ ...prev, visible: false }));
+  // Custom drag cursor
+  const handleMouseMove = (e) =>
+    setCursor({ x: e.clientX, y: e.clientY, visible: true });
+  const handleLeave = () =>
+    setCursor((prev) => ({ ...prev, visible: false }));
 
   return (
     <div className="mb-24 relative">
-      <h3 className="text-lg font-semibold mb-8 tracking-widest text-neutral-300">{category.title}</h3>
+      <h3 className="text-lg font-semibold mb-8 tracking-widest text-neutral-300">
+        {title}
+      </h3>
 
       {/* DRAG CURSOR */}
       {cursor.visible && (
@@ -63,52 +123,60 @@ const Category = ({ category }) => {
       >
         <motion.div
           ref={sliderRef}
-          drag="x"
+          drag={projects.length > 0 ? "x" : false}
           dragConstraints={{ left: -dragWidth, right: 0 }}
           dragElastic={0.08}
           style={{ x }}
           className="flex gap-6 cursor-none"
         >
-          {category.projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="
-                min-w-[90%] sm:min-w-[280px] md:min-w-[350px] lg:min-w-[400px]
-                bg-neutral-900/60 backdrop-blur rounded-2xl overflow-hidden
-                border border-white/5 shadow-lg
-              "
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-[180px] object-cover"
-                />
-              </div>
-              <div className="p-5">
-                <p className="text-sm font-medium tracking-wide text-neutral-200">
-                  {project.title}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {projects.length > 0 ? (
+            projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="
+                  min-w-[90%] sm:min-w-[280px] md:min-w-[350px] lg:min-w-[400px]
+                  bg-neutral-900/60 backdrop-blur rounded-2xl overflow-hidden
+                  border border-white/5 shadow-lg
+                "
+              >
+                {project.image && (
+                  <div className="overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title || "Project"}
+                      className="w-full h-[180px] object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-5">
+                  <p className="text-sm font-medium tracking-wide text-neutral-200">
+                    {project.title || "Untitled"}
+                  </p>
+                </div>
+              </motion.div>
+            ))
+          ) : (
+            <p className="text-neutral-400 p-5">No projects yet.</p>
+          )}
         </motion.div>
       </div>
 
       {/* Pagination Dots (mobile only) */}
-      <div className="flex justify-center mt-6 gap-3 md:hidden">
-        {category.projects.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => scrollToCard(index)}
-            className={`h-3 w-3 rounded-full transition-all ${
-              activeIndex === index ? "bg-blue-500 scale-125" : "bg-neutral-600"
-            }`}
-          />
-        ))}
-      </div>
+      {projects.length > 1 && (
+        <div className="flex justify-center mt-6 gap-3 md:hidden">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToCard(index)}
+              className={`h-3 w-3 rounded-full transition-all ${
+                activeIndex === index ? "bg-blue-500 scale-125" : "bg-neutral-600"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default Category;
+export default Projects;
