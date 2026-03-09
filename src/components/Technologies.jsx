@@ -70,7 +70,7 @@ const Technologies = () => {
   return (
     <section className="border-b border-neutral-800 px-6 py-20">
       <h2 className="mb-6 text-center text-5xl font-bold tracking-tight">
-        Technologies
+        Skills
       </h2>
 
       <p className="mb-12 text-center text-neutral-400 max-w-xl mx-auto">

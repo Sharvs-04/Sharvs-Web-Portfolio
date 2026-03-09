@@ -1,100 +1,114 @@
-// import React from "react";
+import { motion, useMotionValue } from "framer-motion";
+import { useRef, useState, useLayoutEffect } from "react";
 
-// const projects = [
-//   {
-//     id: 1,
-//     title: "SEO Landing Page - Local Business",
-//     description: "Optimized landing page targeting local SEO in Bulacan.",
-//     link: "#", // replace with actual project link
-//   },
-//   {
-//     id: 2,
-//     title: "E-commerce SEO Optimization",
-//     description: "Technical SEO & speed optimization for online store.",
-//     link: "#",
-//   },
-//   {
-//     id: 3,
-//     title: "Corporate Website Redesign",
-//     description: "Modern UI redesign with performance improvements.",
-//     link: "#",
-//   },
-//   {
-//     id: 4,
-//     title: "Content Strategy Project",
-//     description: "Keyword research & authority-building campaign.",
-//     link: "#",
-//   },
-//   {
-//     id: 5,
-//     title: "AMP Page Development",
-//     description: "Improved mobile performance using AMP framework.",
-//     link: "#",
-//   },
-//   {
-//     id: 6,
-//     title: "SEO Audit & Technical Fix",
-//     description: "Full technical audit with structured data implementation.",
-//     link: "#",
-//   },
-// ];
+const Category = ({ category }) => {
+  const sliderRef = useRef(null);
+  const containerRef = useRef(null);
 
-// const Projects = () => {
-//   return (
-//     <div className="border-b border-neutral-900 pb-24 px-6">
-//       <h2 className="my-20 text-center text-5xl font-bold text-white">
-//         PROJECTS
-//       </h2>
+  const x = useMotionValue(0);
+  const [dragWidth, setDragWidth] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
 
-//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-//         {projects.map((project) => (
-//           <div
-//             key={project.id}
-//             className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 flex flex-col justify-between hover:shadow-lg hover:scale-105 transition-transform duration-300"
-//           >
-//             {/* Image Placeholder */}
-//             <div className="h-48 bg-neutral-800 rounded-lg mb-6 flex items-center justify-center text-gray-500">
-//               Project Image
-//             </div>
+  // calculate max drag width
+  useLayoutEffect(() => {
+    if (sliderRef.current && containerRef.current) {
+      const sliderWidth = sliderRef.current.scrollWidth;
+      const containerWidth = containerRef.current.offsetWidth;
+      setDragWidth(sliderWidth - containerWidth);
+    }
+  }, [category.projects]);
 
-//             <div className="flex flex-col flex-1">
-//               <h3 className="text-xl font-semibold mb-2 text-white">
-//                 {project.title}
-//               </h3>
-//               <p className="text-gray-400 mb-4 flex-1">{project.description}</p>
+  // sync active dot with slider position
+  useLayoutEffect(() => {
+    const unsubscribe = x.onChange((latestX) => {
+      const cardWidth = sliderRef.current.children[0].offsetWidth + 24; // card + gap
+      const index = Math.round(Math.abs(latestX) / cardWidth);
+      setActiveIndex(index);
+    });
+    return () => unsubscribe();
+  }, [x]);
 
-//               <a
-//                 href={project.link}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="mt-auto inline-block text-center px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-colors duration-200"
-//               >
-//                 See Project
-//               </a>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+  // click dot → move slider
+  const scrollToCard = (index) => {
+    const cardWidth = sliderRef.current.children[0].offsetWidth + 24;
+    x.set(-index * cardWidth);
+  };
 
-// export default Projects;
+  const handleMouseMove = (e) => setCursor({ x: e.clientX, y: e.clientY, visible: true });
+  const handleLeave = () => setCursor(prev => ({ ...prev, visible: false }));
 
-import React from "react";
-
-const Projects = () => {
   return (
-    <div className="border-b border-neutral-900 pb-24 px-6 flex items-center justify-center min-h-[60vh]">
-      <div className="text-center">
-        <h2 className="my-10 text-5xl font-bold text-white">PROJECTS</h2>
+    <div className="mb-24 relative">
+      <h3 className="text-lg font-semibold mb-8 tracking-widest text-neutral-300">{category.title}</h3>
 
-        <p className="text-3xl text-gray-400 animate-pulse tracking-widest">
-          Coming Soon...
-        </p>
+      {/* DRAG CURSOR */}
+      {cursor.visible && (
+        <div
+          className="fixed pointer-events-none z-50"
+          style={{ top: cursor.y - 30, left: cursor.x - 30 }}
+        >
+          <div className="w-14 h-14 rounded-full bg-black/80 backdrop-blur-md flex items-center justify-center text-xs tracking-widest text-white border border-white/10">
+            DRAG
+          </div>
+        </div>
+      )}
+
+      {/* Slider Container */}
+      <div
+        ref={containerRef}
+        className="relative overflow-hidden"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleLeave}
+      >
+        <motion.div
+          ref={sliderRef}
+          drag="x"
+          dragConstraints={{ left: -dragWidth, right: 0 }}
+          dragElastic={0.08}
+          style={{ x }}
+          className="flex gap-6 cursor-none"
+        >
+          {category.projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="
+                min-w-[90%] sm:min-w-[280px] md:min-w-[350px] lg:min-w-[400px]
+                bg-neutral-900/60 backdrop-blur rounded-2xl overflow-hidden
+                border border-white/5 shadow-lg
+              "
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-[180px] object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <p className="text-sm font-medium tracking-wide text-neutral-200">
+                  {project.title}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Pagination Dots (mobile only) */}
+      <div className="flex justify-center mt-6 gap-3 md:hidden">
+        {category.projects.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => scrollToCard(index)}
+            className={`h-3 w-3 rounded-full transition-all ${
+              activeIndex === index ? "bg-blue-500 scale-125" : "bg-neutral-600"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default Projects;
+export default Category;
