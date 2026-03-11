@@ -184,7 +184,7 @@
 
 import React, { useRef, useState, useLayoutEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import Jarot88 from "../assets/Jarot88.jpeg";
+import Jarot88 from "/src/assets/Jarot88.jpeg";
 
 const categories = [
   {
