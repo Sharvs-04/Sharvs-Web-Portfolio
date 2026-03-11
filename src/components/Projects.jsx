@@ -189,25 +189,38 @@ const categories = [
   {
     title: "IGAMING SINGLE PRODUCT WEBPAGE",
     projects: [
-      { title: "Casino Landing Page", image: "/images/product-website.png" },
-      { title: "Sports Betting Page", image: "/images/product-website.png" },
-      { title: "Gaming Promo Page", image: "/images/product-website.png" },
+      {
+        title: "Casino Promotion Landing Page Design",
+        image: "/src/assets/Jarot88.jpeg",
+        link: "https://www.fortressydc.org/calendar",
+        live: true,
+      },
+      {
+        title: "Sports Betting Page",
+        image: "/images/product-website.png",
+        live: false,
+      },
+      {
+        title: "Gaming Promo Page",
+        image: "/images/product-website.png",
+        live: false,
+      },
     ],
   },
   {
     title: "GRAPHIC DESIGN",
     projects: [
-      { title: "Menu Design", image: "/images/graphic-design.png" },
-      { title: "Promo Banner", image: "/images/graphic-design.png" },
-      { title: "Social Media Creative", image: "/images/graphic-design.png" },
+      { title: "Menu Design", image: "/images/graphic-design.png", live: false },
+      { title: "Promo Banner", image: "/images/graphic-design.png", live: false },
+      { title: "Social Media Creative", image: "/images/graphic-design.png", live: false },
     ],
   },
   {
     title: "WEB DESIGN",
     projects: [
-      { title: "Corporate Website", image: "/images/website-design.png" },
-      { title: "Landing Page", image: "/images/landing-pages.png" },
-      { title: "Startup Website", image: "/images/website-design.png" },
+      { title: "Corporate Website", image: "/images/website-design.png", live: false },
+      { title: "Landing Page", image: "/images/landing-pages.png", live: false },
+      { title: "Startup Website", image: "/images/website-design.png", live: false },
     ],
   },
 ];
@@ -220,7 +233,7 @@ const Projects = () => {
       </h2>
 
       <p className="text-center text-neutral-400 mb-20 text-sm tracking-wide">
-        Selected work & experiments — launching soon
+        Selected work & experiments
       </p>
 
       {categories.map((category, i) => (
@@ -237,7 +250,9 @@ const Category = ({ projectsData }) => {
   const x = useMotionValue(0);
   const [dragWidth, setDragWidth] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+
   const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false });
+  const [hoveringButton, setHoveringButton] = useState(false);
 
   const projects = Array.isArray(projectsData?.projects)
     ? projectsData.projects
@@ -272,11 +287,19 @@ const Category = ({ projectsData }) => {
     }
   };
 
-  const handleMouseMove = (e) =>
-    setCursor({ x: e.clientX, y: e.clientY, visible: true });
+  const handleMouseMove = (e) => {
+    if (!hoveringButton) {
+      setCursor({
+        x: e.clientX,
+        y: e.clientY,
+        visible: true,
+      });
+    }
+  };
 
-  const handleLeave = () =>
+  const handleMouseLeave = () => {
     setCursor((prev) => ({ ...prev, visible: false }));
+  };
 
   return (
     <div className="mb-28 relative">
@@ -285,7 +308,7 @@ const Category = ({ projectsData }) => {
       </h3>
 
       {/* Drag Cursor */}
-      {cursor.visible && (
+      {cursor.visible && !hoveringButton && (
         <div
           className="fixed pointer-events-none z-50"
           style={{ top: cursor.y - 28, left: cursor.x - 28 }}
@@ -301,7 +324,7 @@ const Category = ({ projectsData }) => {
         ref={containerRef}
         className="relative overflow-hidden"
         onMouseMove={handleMouseMove}
-        onMouseLeave={handleLeave}
+        onMouseLeave={handleMouseLeave}
       >
         <motion.div
           ref={sliderRef}
@@ -309,7 +332,7 @@ const Category = ({ projectsData }) => {
           dragConstraints={{ left: -dragWidth, right: 0 }}
           dragElastic={0.08}
           style={{ x }}
-          className="flex gap-6 cursor-none"
+          className="flex gap-6 cursor-grab active:cursor-grabbing"
         >
           {projects.map((project, index) => (
             <motion.div
@@ -323,7 +346,6 @@ const Category = ({ projectsData }) => {
                 shadow-xl
                 hover:shadow-[0_0_40px_rgba(59,130,246,0.25)]
                 transition-shadow duration-300
-                group
               "
             >
               {/* Image */}
@@ -331,21 +353,18 @@ const Category = ({ projectsData }) => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="
-                    w-full h-[220px] object-cover
-                    blur-sm brightness-75
-                    group-hover:blur-none
-                    group-hover:brightness-100
-                    transition duration-500
-                  "
+                  className={`w-full h-[220px] object-cover transition duration-500 ${
+                    project.live ? "" : "blur-sm brightness-75"
+                  }`}
                 />
 
-                {/* Coming Soon Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                  <span className="px-5 py-2 text-[10px] tracking-[0.35em] uppercase border border-white/30 rounded-full text-white bg-white/10">
-                    Coming Soon
-                  </span>
-                </div>
+                {!project.live && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                    <span className="px-5 py-2 text-[10px] tracking-[0.35em] uppercase border border-white/30 rounded-full text-white bg-white/10">
+                      Coming Soon
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -354,16 +373,25 @@ const Category = ({ projectsData }) => {
                   {project.title}
                 </p>
 
-                <span className="text-[10px] text-blue-400 tracking-widest">
-                  IN PROGRESS
-                </span>
+                {project.live && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseEnter={() => setHoveringButton(true)}
+                    onMouseLeave={() => setHoveringButton(false)}
+                    className="text-xs px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg transition cursor-pointer"
+                  >
+                    See Live
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Pagination Dots */}
+      {/* Pagination */}
       {projects.length > 1 && (
         <div className="flex justify-center mt-6 gap-3 md:hidden">
           {projects.map((_, index) => (

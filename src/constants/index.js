@@ -1,6 +1,10 @@
 export const HERO_CONTENT = `I have basic to advance knowledge in web development, including HTML, CSS, JavaScript, React, PHP, and MySQL. In addition, I have basic UI/UX design skills and experience with hardware/software issues, web hosting, and SEO tools.`;
 
-export const ABOUT_TEXT = `Sharvien Paul Claro is an SEO Specialist based in the Philippines with experience in technical SEO, website optimization, and front-end development. He helps businesses improve search visibility, site performance, and organic growth through data-driven SEO strategies. A cum laude graduate of Bulacan State University, he began his career in front-end development before specializing in search engine optimization, where he conducts technical audits, optimizes content and landing pages, and improves website performance using industry-standard tools. With experience spanning web development, SEO strategy, and digital systems management, he brings both technical expertise and strategic thinking to every project.`;
+export const ABOUT_TEXT = `I’m Sharvien Paul Claro, an SEO Specialist based in the Philippines with experience in technical SEO, website optimization, and front-end development. I help businesses grow their search visibility, improve site performance, and increase organic traffic through data-driven SEO strategies.
+
+I graduated cum laude from Bulacan State University and started my career in front-end development before focusing on search engine optimization. I regularly conduct technical SEO audits, optimize landing pages and content, and improve website performance using industry-standard tools.
+
+My background in web development, SEO strategy, and digital systems management allows me to combine technical expertise with strategic thinking in every project I work on.`;
 
 // Experience history
 export const EXPERIENCES = [

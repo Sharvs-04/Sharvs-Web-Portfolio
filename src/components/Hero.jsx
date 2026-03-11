@@ -48,21 +48,16 @@ const Hero = () => {
             </motion.span>
 
             <motion.p
-              variants={container(1)}
-              initial="hidden"
-              animate="visible"
-              className="my-2 max-w-xl py-5 font-light sm:text-sm lg:text-xl text-center lg:text-left"
-            >
-              I build high-performance websites and improve online visibility using{" "}
-              <span className="text-blue-400 font-semibold">HTML</span>,{" "}
-              <span className="text-blue-400 font-semibold">CSS</span>,{" "}
-              <span className="text-blue-400 font-semibold">JavaScript</span>,{" "}
-              <span className="text-blue-400 font-semibold">React</span>,{" "}
-              <span className="text-blue-400 font-semibold">PHP</span>,{" "}
-              <span className="text-blue-400 font-semibold">MySQL</span>, and{" "}
-              <span className="text-blue-400 font-semibold">UI/UX</span> design. I also specialize in{" "}
-              <span className="text-blue-400 font-semibold">SEO strategies</span> to boost rankings and conversions.
-            </motion.p>
+            variants={container(1)}
+            initial="hidden"
+            animate="visible"
+            className="my-2 max-w-xl py-5 font-light sm:text-sm lg:text-xl text-center lg:text-left"
+          >
+            I develop high-performance websites and help businesses grow online through{" "}
+            <span className="text-blue-400 font-semibold">technical SEO</span>,{" "}
+            <span className="text-blue-400 font-semibold">website optimization</span>, and{" "}
+            <span className="text-blue-400 font-semibold">modern web development technologies</span>.
+          </motion.p>
 
             <motion.a
               href="https://drive.google.com/file/d/1LJ3rxismOSaX6WRpc64m7ImCnUbYMCoR/view?usp=sharing"
