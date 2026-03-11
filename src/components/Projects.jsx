@@ -184,6 +184,7 @@
 
 import React, { useRef, useState, useLayoutEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import Jarot88 from "../assets/Jarot88.jpeg";
 
 const categories = [
   {
@@ -191,7 +192,7 @@ const categories = [
     projects: [
       {
         title: "Casino Promotion Landing Page Design",
-        image: "/src/assets/Jarot88.jpeg",
+        image: Jarot88,
         link: "https://www.fortressydc.org/calendar",
         live: true,
       },
